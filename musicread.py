@@ -1,3 +1,7 @@
+'''
+Author: Akshay Narayan
+'''
+
 import wave,numpy,struct
 import matplotlib.pyplot as plot
 
