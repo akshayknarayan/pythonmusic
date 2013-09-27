@@ -1,7 +1,7 @@
 '''
 Author: Akshay Narayan
 '''
-
+import sys
 import wave,numpy,struct
 import matplotlib.pyplot as plot
 
@@ -48,7 +48,7 @@ def graph(freqs, space, name):
 	ax.grid(True)
 	plot.savefig(name)
 
-(channels, framerate) = getPCMData('tone2.wav')
+(channels, framerate) = getPCMData(sys.argv[-1])
 print(len(channels))
 freqs = [magnitudinize(numpy.fft.fft(a)) for a in channels]
 del channels
@@ -59,5 +59,5 @@ freq_space = [(framerate/len(i))*framerate for i in freqs]
 short_freqs = [normalize(a,t,framesize=framerate) for (a,t) in zip(freqs,high)]
 print(len(freqs[0]), len(short_freqs[0]))
 del freqs
-graph(short_freqs[0],freq_space[0],'2toneleft')
-graph(short_freqs[1],freq_space[1],'2toneright')
+graph(short_freqs[0],freq_space[0],'left_frequencies')
+graph(short_freqs[1],freq_space[1],'right_frequencies')
